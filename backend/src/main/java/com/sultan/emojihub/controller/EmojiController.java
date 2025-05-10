@@ -5,6 +5,7 @@ import com.sultan.emojihub.service.EmojiService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api")
@@ -31,4 +32,11 @@ public class EmojiController {
     public List<Emoji> getByCategory(@PathVariable String category) {
         return emojiService.getByCategory(category);
     }
+
+    @GetMapping("/emojis/random")
+    public Emoji getRandomEmoji() {
+        List<Emoji> all = emojiService.getAllEmojis();
+        return all.isEmpty() ? null : all.get(new Random().nextInt(all.size()));
+    }
+
 }
