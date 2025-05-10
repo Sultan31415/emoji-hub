@@ -4,9 +4,11 @@ export default function EmojiCatalog() {
   const [emojis, setEmojis] = useState([]);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
+  const [sortBy, setSortBy] = useState('');
 
   const API_URL = process.env.REACT_APP_API_URL;
 
+  // Fetch from backend
   useEffect(() => {
     let url = `${API_URL}/emojis`;
     if (search) {
@@ -20,6 +22,14 @@ export default function EmojiCatalog() {
       .then(data => setEmojis(data))
       .catch(err => console.error("Error:", err));
   }, [search, category]);
+
+  // Sort locally on frontend
+  let sortedEmojis = [...emojis];
+  if (sortBy === 'name-asc') {
+    sortedEmojis.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === 'name-desc') {
+    sortedEmojis.sort((a, b) => b.name.localeCompare(a.name));
+  }
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -55,8 +65,18 @@ export default function EmojiCatalog() {
         <option value="flags">Flags</option>
       </select>
 
+      <select
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+        style={{ marginLeft: '1rem', padding: '0.5rem' }}
+      >
+        <option value="">-- Sort Alphabetically --</option>
+        <option value="name-asc">A → Z</option>
+        <option value="name-desc">Z → A</option>
+      </select>
+
       <ul style={{ listStyle: 'none', padding: 0 }}>
-        {emojis.map((emoji, index) => (
+        {sortedEmojis.map((emoji, index) => (
           <li key={index} style={{ padding: '0.5rem', borderBottom: '1px solid #ccc' }}>
             <span style={{ fontSize: '1.5rem', marginRight: '1rem' }} dangerouslySetInnerHTML={{ __html: emoji.htmlCode[0] }} />
             <strong>{emoji.name}</strong> – <em>{emoji.category}</em>

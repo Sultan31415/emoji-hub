@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Home.css'; // we'll create this CSS next
 
 export default function Home() {
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>🎉 Welcome to Emoji Hub!</h1>
-      <p>Explore and search thousands of emojis with ease.</p>
-      <Link to="/emojis">Go to Emoji Catalog →</Link>
+    <div className="home-wrapper">
+      <div className="home-hero">
+        <h1>🎉 Welcome to <span className="emoji-hub">Emoji Hub</span></h1>
+        <p className="subtitle">Search, explore, and smile your way through thousands of emojis 😄</p>
+        <div className="emoji-preview">😍 🤖 🎨 🚀 🧠 🐱‍👤 🎯 🌍</div>
+        <Link to="/emojis" className="hero-button">Browse Emoji Catalog →</Link>
+      </div>
     </div>
   );
 }
