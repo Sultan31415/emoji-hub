@@ -9,7 +9,9 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")  // for React
+//@CrossOrigin(origins = "http://localhost:3000")
+// for React
+@CrossOrigin(origins = "https://emoji-hub-sigma.vercel.app")
 public class EmojiController {
 
     private final EmojiService emojiService;
