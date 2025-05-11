@@ -1,14 +1,15 @@
-# Use a slim OpenJDK 17 image
-FROM openjdk:17-alpine
+# backend/Dockerfile
 
-# Create and switch to /app
+# 1) pick a multi-arch image
+FROM eclipse-temurin:17-jdk-slim AS runtime
+
 WORKDIR /app
 
-# Copy your built JAR in (the wildcard picks up backend-*.jar)
-COPY target/backend-*.jar app.jar
+# 2) copy the JAR you just built
+COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Tell Docker that the container listens on 8080
+# 3) tell Docker we listen on 8080
 EXPOSE 8080
 
-# When the container starts, run:
-ENTRYPOINT ["java","-jar","/app.jar"]
+# 4) start Spring Boot
+ENTRYPOINT ["java","-jar","app.jar"]
