@@ -1,14 +1,14 @@
-# Use a lightweight Java 17 image
-FROM eclipse-temurin:17-jdk-alpine
+# Use a slim OpenJDK 17 image
+FROM openjdk:17-alpine
 
-# Create app directory
+# Create and switch to /app
 WORKDIR /app
 
-# Copy the JAR we just built into the container
-COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
+# Copy your built JAR in (the wildcard picks up backend-*.jar)
+COPY target/backend-*.jar app.jar
 
-# Expose port 8080 to the outside world
+# Tell Docker that the container listens on 8080
 EXPOSE 8080
 
-# Run the JAR
-ENTRYPOINT ["java","-jar","app.jar"]
+# When the container starts, run:
+ENTRYPOINT ["java","-jar","/app.jar"]
