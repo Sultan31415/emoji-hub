@@ -43,13 +43,19 @@ public class EmojiService {
                 .collect(Collectors.toList());
     }
 
+//    public List<Emoji> getByCategory(String category) {
+//        try {
+//            Emoji[] response = restTemplate.getForObject(BASE_URL + "/all/category/" + category, Emoji[].class);
+//            return Arrays.asList(response);
+//        } catch (Exception e) {
+//            System.err.println("Error fetching category: " + e.getMessage());
+//            return List.of();
+//        }
+//    }
     public List<Emoji> getByCategory(String category) {
-        try {
-            Emoji[] response = restTemplate.getForObject(BASE_URL + "/all/category/" + category, Emoji[].class);
-            return Arrays.asList(response);
-        } catch (Exception e) {
-            System.err.println("Error fetching category: " + e.getMessage());
-            return List.of();
-        }
+        return getAllEmojis().stream()
+                .filter(e -> e.getCategory().equalsIgnoreCase(category))
+                .collect(Collectors.toList());
     }
+
 }
