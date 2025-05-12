@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/emoji")
-//@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://emoji-hub-sigma.vercel.app")
+@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "https://emoji-hub-sigma.vercel.app")
 public class EmojiDescriptionController {
 
     private final EmojiDescriptionService descriptionService;
