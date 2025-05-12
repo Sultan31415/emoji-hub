@@ -53,8 +53,44 @@ export default function EmojiCatalog() {
     <div className="emoji-page">
       <h2>📚 Emoji Catalog</h2>
 
+      {/* 🔧 Restored controls here */}
       <div className="controls">
-        {/* ... same as before ... */}
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={search}
+          onChange={e => {
+            setSearch(e.target.value);
+            setCategory('');
+          }}
+        />
+
+        <select
+          onChange={e => {
+            setCategory(e.target.value);
+            setSearch('');
+          }}
+          value={category}
+        >
+          <option value="">-- Select Category --</option>
+          <option value="smileys and people">Smileys and People</option>
+          <option value="animals and nature">Animals and Nature</option>
+          <option value="food and drink">Food and Drink</option>
+          <option value="travel and places">Travel and Places</option>
+          <option value="activities">Activities</option>
+          <option value="objects">Objects</option>
+          <option value="symbols">Symbols</option>
+          <option value="flags">Flags</option>
+        </select>
+
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="">-- Sort Alphabetically --</option>
+          <option value="name-asc">A → Z</option>
+          <option value="name-desc">Z → A</option>
+        </select>
       </div>
 
       <div className="emoji-grid">
