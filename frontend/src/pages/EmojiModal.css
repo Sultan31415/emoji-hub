@@ -1,3 +1,5 @@
+/* EmojiModal.css */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -12,19 +14,21 @@
 }
 
 .modal-content {
-  background: white;
+  background: #fff;
   padding: 20px;
   border-radius: 8px;
-  max-width: 350px;
-  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   position: relative;
+  font-family: sans-serif;
 }
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
+  top: 12px;
+  right: 16px;
+  background: none;
   border: none;
   font-size: 18px;
   cursor: pointer;
@@ -32,5 +36,21 @@
 
 .emoji-large {
   font-size: 64px;
-  margin: 10px 0;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.emoji-details p {
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.description-block {
+  margin-top: 16px;
+}
+
+.loading {
+  color: #777;
+  font-style: italic;
 }

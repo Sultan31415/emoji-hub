@@ -10,6 +10,7 @@ export default function EmojiCatalog() {
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
+  
 
   const API_URL = process.env.REACT_APP_API_URL;
 
